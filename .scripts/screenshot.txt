@@ -1,0 +1,2 @@
+Capture screen,maim -s -b 3 | xclip -selection clipboard -t image/png,/home/anhthi/Pictures/icon/capture.png
+Full screen,scrot /tmp/%Y-%m-%d_%H-%M-%S_\$wx\$h.png --exec 'xclip -selection clipboard -t image/png -i $f',/home/anhthi/Pictures/icon/fullscreen.png

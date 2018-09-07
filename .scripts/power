@@ -1,0 +1,9 @@
+#!/bin/bash
+line=$(echo -e '  Shutdown\n  Reboot\n  Suspend' | rofi -no-fixed-num-lines -matching fuzzy -dmenu -i -e "Power Manager" -format 'i' -theme power -width 30 -yoffset -100)
+if [[ $line == 0 ]] ; then
+	systemctl poweroff
+elif [[ $line == 1 ]] ; then
+	systemctl reboot
+elif [[ $line == 2 ]] ; then
+	systemctl suspend
+fi

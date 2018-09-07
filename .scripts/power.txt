@@ -1,0 +1,3 @@
+Suspend,systemctl suspend,/home/anhthi/Pictures/icon/lock.png
+Reboot,systemctl reboot,/home/anhthi/Pictures/icon/reboot.png
+Shutdown,systemctl poweroff,/home/anhthi/Pictures/icon/power.png

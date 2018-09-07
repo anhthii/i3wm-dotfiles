@@ -1,0 +1,13 @@
+Chrome,i3run -c Google-chrome -i google-chrome -g -e google-chrome-stable,/home/anhthi/Pictures/icon/chrome.png
+Screenshot,^checkout(screenshot),/home/anhthi/Pictures/icon/picture.png
+Thunar,thunar,/home/anhthi/Pictures/icon/folder.png
+Popcorn Time,popcorntime,/home/anhthi/Pictures/icon/popcorn.png
+Code,i3run -i code -e code,/home/anhthi/Pictures/icon/vscode.png
+Boostnote,i3run -i boostnote -e boostnote,/home/anhthi/Pictures/icon/note.png
+Medley text,i3run -i medleytext -e /usr/local/bin/medley-latest.AppImage,/home/anhthi/Pictures/icon/medley.png
+Transmission,transmission-gtk,/home/anhthi/Pictures/icon/transmission.png
+Books,/home/anhthi/.scripts/books-search.sh,/home/anhthi/Pictures/icon/jpg.png
+
+^tag(screenshot)
+Capture screen,maim -s -b 3 | xclip -selection clipboard -t image/png,/home/anhthi/Pictures/icon/capture.png
+Full screen,scrot /tmp/%Y-%m-%d_%H-%M-%S_\$wx\$h.png --exec 'xclip -selection clipboard -t image/png -i $f',/home/anhthi/Pictures/icon/fullscreen.png
