@@ -1,0 +1,612 @@
+[colors]
+;background = ${xrdb:color0:#222}
+background = #222
+background-alt = #0198c1
+;foreground = ${xrdb:color7:#222}
+foreground = #dfdfdf
+foreground-alt = #555
+primary = #ffb52a
+secondary = #e60053
+alert = #bd2c40
+
+
+[bar/mystatus]
+;monitor = ${env:MONITOR:eDP-1}
+width = 100%
+height = 30
+
+offset-x = 0%
+offset-y = 0%
+
+radius = 0.0
+fixed-center = true
+
+top = true
+
+background = #cc1a2538
+;background = #FF000000
+foreground = ${colors.foreground}
+
+line-size = 0
+line-color = #f00
+
+border-size = 0
+border-color = #00000000
+
+padding-left = 0
+padding-right = 0
+
+module-margin-left = 3
+module-margin-right = 3
+
+
+font-0 = Roboto:size=9;3 
+font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-2 = FontAwesome:size=11;4
+
+modules-right = networkspeeddown networkspeedup wlan jgpowermenu
+;modules-center = xwindow
+modules-center = xwindow
+modules-left = jgmenu xbacklight battery volume 
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+#tray-transparent = true
+
+;wm-restack = bspwm
+;wm-restack = i3
+
+
+;scroll-up = bspwm-desknext
+;scroll-down = bspwm-deskprev
+
+;scroll-up = i3wm-wsnext
+;scroll-down = i3wm-wsprev
+
+[bar/cool]
+;monitor = ${env:MONITOR:DP-1}
+width = 100%
+height = 30
+
+offset-x = 0%
+offset-y = 0%
+
+radius = 0.0
+fixed-center = true
+
+bottom = true
+
+#background = #80000000
+#background = #0b1019
+background = #cc0b1019
+foreground = ${colors.foreground}
+
+line-size = 2
+line-color = #f00
+
+border-size = 0
+border-color = #00000000
+
+padding-left = 0
+padding-right = 5
+
+module-margin-left = 3
+module-margin-right = 3
+
+font-0 = Ubuntu:size=9;3 
+font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-2 = FontAwesome:size=11;4
+font-3 = Weather Icons:size=12;4
+
+modules-right = filesystem cpu memory
+modules-center = popup-calendar weather
+modules-left = i3
+
+tray-position = right
+tray-padding = 6
+tray-background = #e606090f
+tray-transparent = true
+;tray-detached = false
+; On the right
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+
+[module/float]
+type = custom/text
+content = ""
+content-foreground = #00b0fc
+click-left = i3-msg floating toggle
+content-padding = 2
+
+[module/power]
+type = custom/text
+content = ""
+content-foreground = #b5031e
+click-left = ~/.scripts/power
+content-padding = 2
+
+
+[module/split]
+type = custom/text
+content = "[ Split ]"
+content-foreground = #1cffc2
+click-left = i3-msg layout toggle split
+content-padding = 2
+
+[module/lock]
+type = custom/text
+content = ""
+content-foreground = #18ad83
+click-left = i3-persist toggle
+content-padding = 2
+
+[module/tabbed]
+type = custom/text
+content = "[ Tabbed ]"
+content-foreground = #85ff1c
+click-left = i3-msg layout tabbed
+content-padding = 2
+
+
+[module/minimize]
+type = custom/text
+content = ""
+content-foreground = #a4f700
+click-left = i3-msg move scratchpad
+content-padding = 2
+
+[module/restore]
+type = custom/text
+content = ""
+content-foreground = #04d5e0
+click-left = i3-msg scratchpad show 
+content-padding = 2
+
+
+[module/close]
+type = custom/text
+content = ""
+content-foreground = ${colors.secondary}
+click-left = i3-msg kill
+content-padding = 2
+
+[module/search]
+type = custom/text
+content = "  Search"
+content-foreground = colors.foreground
+click-left = rofi -modi drun,run -show drun -theme sidetab -location 7 -yoffset -28
+content-padding = 0
+
+[module/jgmenu]
+type = custom/text
+content-background = #cc0e1521
+content-padding = 5
+interval = 600
+content = "%{F#d82400}%{F-}    Apps    %{F#96999e}"
+click-left = "cat ~/.scripts/launchapp.txt | jgmenu --simple"
+
+[module/jgpowermenu]
+type = custom/text
+content-background = #cc0e1521
+content-padding = 5
+label-padding = 2
+interval = 600
+content = "%{F#b5031e}"
+click-left = "cat ~/.scripts/power.txt | jgmenu --simple --config-file=~/.config/jgmenu/jgpowermenu"
+
+[module/screenshot]
+type = custom/text
+label-padding = 2
+interval = 600
+content = "%{F#02fcb5}"
+click-left = "cat ~/.scripts/screenshot.txt | jgmenu --simple --config-file=~/.config/jgmenu/jgpowermenu"
+
+[module/weather]
+type = custom/script
+exec = ~/.scripts/openweathermap-simple.sh
+interval = 600
+label-font = Weather Icons:size=12;1
+
+
+[module/xwindow]
+type = internal/xwindow
+format = <label>
+format-prefix = " "
+format-prefix-foreground = #1c9cff
+format-padding = 4
+
+label = %{O10}%title%
+label-maxlen = 70
+label-foreground = #a5bab3
+
+[module/xkeyboard]
+type = internal/xkeyboard
+blacklist-0 = 
+
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+format-prefix-underline = ${colors.secondary}
+
+label-layout = %layout%
+label-layout-underline = ${colors.secondary}
+
+label-indicator-padding = 2
+label-indicator-margin = 1
+label-indicator-background = ${colors.secondary}
+label-indicator-underline = ${colors.secondary}
+
+[module/filesystem]
+type = internal/fs
+interval = 25
+
+mount-0 = /
+
+label-mounted = %{F#00ffd4}%{F-}%{O10}%free%
+;label-mounted-underline = #0a81f5
+label-unmounted = %mountpoint% not mounted
+label-unmounted-foreground = ${colors.foreground-alt}
+
+[module/bspwm]
+type = internal/bspwm
+ws-icon-default = x
+
+label-focused = %index%
+label-focused-background = ${colors.background-alt}
+;label-focused-underline= ${colors.primary}
+label-focused-underline= #f3f99d
+label-focused-padding = 2
+
+label-occupied = %index%
+label-occupied-padding = 2
+
+label-urgent = %index%!
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
+
+label-empty = %index%
+label-empty-foreground = ${colors.foreground-alt}
+label-empty-padding = 2
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+
+label-mode = %mode%
+index-sort = true
+
+ws-icon-0 = 1; 
+ws-icon-1 = 2; 
+ws-icon-2 = 3; 
+ws-icon-3 = 4; 
+ws-icon-4 = 5; 
+ws-icon-5 = 6; 
+ws-icon-6 = 7;
+ws-icon-7 = 8;
+ws-icon-8 = 9;
+ws-icon-9 = 10;
+ws-icon-default = 
+
+;wrapping-scroll = false
+
+; Only show workspaces on the same output as the bar
+;pin-workspaces = true
+
+label-mode-padding = 5
+label-mode-background = #ea0b64
+
+; focused = Active workspace on focused monitor
+;label-focused = %index%
+label-focused = %name% %icon%
+label-focused-background = #152033
+label-focused-underline = #0198c1
+label-focused-padding = 5
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused = %name% %icon%
+label-unfocused-padding = 5
+label-unfocused-background = #cc121c2d
+
+; visible = Active workspace on unfocused monitor
+label-visible = %name%  %icon%
+label-visible-background = #263756
+;label-visible-underline = #ad031c
+label-visible-padding = 5
+
+; urgent = Workspace with urgency hint set
+label-urgent = %name% %icon%
+label-urgent-background = ${module/bspwm.label-urgent-background}
+label-urgent-padding = 5
+
+
+[module/mpd]
+type = internal/mpd
+
+host = 127.0.0.1
+port = 6600
+
+format-online = <icon-prev>%{O10} <toggle>%{O10} <icon-next>%{O10} <label-song>%{O10}<icon-repeatone>%{O10}<icon-repeat>%{O10}<icon-random>
+format-offline = <label-offline>
+
+label-song = 𝄞 %artist:0:30:...% - %title:0:30:...%
+
+format-offline-foreground = ${colors.foreground}
+label-offline = %{F#ed0000}%{F-}%{O10}mpd is offline
+
+toggle-on-foreground = #02f2da
+toggle-off-foreground = #fff
+
+icon-play = 
+icon-pause = 
+icon-stop = 
+icon-prev = 
+icon-next = 
+icon-seekb = 
+icon-seekf = 
+icon-random = 
+icon-repeat = 
+icon-repeatone = 
+
+[module/scrolling_text]
+type = custom/script
+exec = mpc current | zscroll -b "⮕ "
+tail = true
+interval = 0
+
+[module/xbacklight]
+type = custom/script
+interval = 0.2
+exec = ~/.config/polybar/backlight.sh
+
+scroll-up = exec light -A 5
+scroll-down = exec light -U 5
+
+format-prefix = "  "
+format-prefix-foreground = #e7ef00
+
+label = %output%%
+label-foreground = ${colors.foreground}
+format-padding = 1
+
+
+[module/popup-calendar]
+type = custom/script
+exec = ~/.scripts/calendar
+interval = 60
+click-left = ~/.scripts/calendar --popup
+;format-prefix = %{F#00e059}%{F-}%{O10}
+;format-prefix-foreground = #e7ef00
+
+[module/backlight-acpi]
+inherit = module/xbacklight
+type = internal/backlight
+card = intel_backlight
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+;format-underline = #f40049
+label = %{F#00f435}%{F-}  CPU %{F#00ffd4}%{O3}%percentage:2%%%{F-}
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+;format-underline = #00f435
+label = %{F#00f435}%{F-}  RAM %{F#00ffd4}%{O3}%percentage_used%%%{F-}
+
+[module/networkspeedup]
+type = internal/network
+interface = wlp2s0
+label-connected = "%upspeed:7%"
+format-connected = <label-connected>
+format-connected-prefix = "%{O6}"
+format-connected-prefix-foreground = #02f92f
+format-underline = #FF8F06
+
+[module/networkspeeddown]
+type = internal/network
+interface = wlp2s0
+label-connected = "%downspeed:7%"
+format-connected = <label-connected>
+format-connected-prefix = "%{O6}"
+format-connected-prefix-foreground = #d30000
+format-underline = #FFB006
+
+[module/wlan]
+type = internal/network
+interface = wlp2s0
+interval = 1.0
+
+format-connected = <ramp-signal> <label-connected>
+format-connected-underline = #9f78e1
+label-connected = %{F#09b2e5} %{O7}%{F-}%essid%
+
+format-disconnected =
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
+
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
+ramp-signal-foreground = ${colors.foreground-alt}
+
+[module/eth]
+type = internal/network
+interface = enp4s0f1
+interval = 3.0
+
+format-connected-underline = #55aa55
+format-connected-prefix = " "
+format-connected-prefix-foreground = ${colors.foreground-alt}
+label-connected = %local_ip%
+
+format-disconnected =
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
+
+[module/date]
+type = internal/date
+interval = 5
+
+date = "%a %d, %b"
+time = "%I:%M"
+
+date-alt = %A, %d %B %Y
+time-alt = %H:%M:%S
+;date = "%d-%m-%y"
+;date-alt = " %Y-%m-%d"
+
+format = %{F#06cce2}%{F-}  <label>
+format-background = 
+format-foreground = #fff
+
+; Available tokens:
+;   %date%
+;   %time%
+; Default: %date%
+label = %{F#00ffd4} %{F-}%{O8}%time%
+
+format-prefix-foreground = ${colors.foreground}
+format-underline = #06cce2
+
+
+[module/time]
+type = internal/date
+interval = 60
+
+time = "%I:%M"
+
+format-prefix = " "
+format-prefix-foreground = #ff9400
+format-underline = #ff9400
+
+label = %{F#ff9400}%time%%{F-}
+
+[module/volume]
+type = internal/volume
+
+;format-volume = <label-volume> <bar-volume>
+format-volume = <label-volume>
+label-volume = "%{F#00b2ff}%{F-}  %percentage%%"
+label-volume-foreground = ${root.foreground}
+
+format-muted-prefix =  
+format-muted-foreground = #d3043f
+label-muted = "  muted"
+
+bar-volume-width = 5
+bar-volume-foreground-0 = #55aa55
+bar-volume-foreground-1 = #55aa55
+bar-volume-foreground-2 = #55aa55
+bar-volume-foreground-3 = #55aa55
+bar-volume-foreground-4 = #55aa55
+bar-volume-foreground-5 = #f5a70a
+bar-volume-foreground-6 = #ff5555
+bar-volume-gradient = false
+bar-volume-indicator = |
+bar-volume-indicator-font = 2
+bar-volume-fill = ─
+bar-volume-fill-font = 2
+bar-volume-empty = ─
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.foreground-alt}
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = ACAD
+full-at = 98
+
+format-charging = <animation-charging> <label-charging>
+format-charging-underline = #fba922
+
+format-discharging = <ramp-capacity> <label-discharging>
+format-discharging-underline = #fba922
+
+format-full-prefix = "  "
+format-full-prefix-foreground = #0cf4d1
+format-full-underline = #fba922
+
+ramp-capacity-0 = ""
+ramp-capacity-1 = ""
+ramp-capacity-2 = ""
+ramp-capacity-foreground =#0cf4d1
+
+animation-charging-0 = ""
+animation-charging-1 = ""
+animation-charging-2 = ""
+animation-charging-foreground = #0cf4d1
+animation-charging-framerate = 750
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
+
+format = <label>
+format-underline = #ffb52a
+format-warn = <label-warn>
+format-warn-underline = #fc4141
+
+label = "%{F#ffee00}%{F-}%{O6}%temperature%"
+label-warn = " %temperature%"
+label-warn-foreground = ${colors.secondary}
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-foreground = ${colors.foreground-alt}
+
+[module/powermenu]
+type = custom/menu
+
+label-open = 
+label-open-foreground = #b5031e
+label-close =  cancel
+label-close-foreground = ${colors.secondary}
+
+menu-0-0 = %{O10}%{O10}Power Off
+menu-0-0-exec = systemctl poweroff
+menu-0-1 = %{O10}%{O10}Reboot
+menu-0-1-exec = systemctl reboot
+menu-0-2 = %{O10}%{O10}Suspend
+menu-0-2-exec = systemctl suspend
+
+menu-1-0 = cancel
+menu-1-0-exec = menu-open-0
+menu-1-1 = reboot
+menu-1-1-exec = sudo reboot
+
+menu-2-0 = power off
+menu-2-0-exec = shutdown now
+menu-2-1 = cancel
+menu-2-1-exec = menu-open-0
+
+menu-3-0 = log out
+menu-3-0-exec = i3-msg exit
+menu-3-1 = cancel
+menu-3-1-exec = menu-open-0
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+
+; vim:ft=dosini
