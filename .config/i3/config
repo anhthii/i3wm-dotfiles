@@ -228,7 +228,9 @@ for_window [class="(?i)mpv"] resize set 687 386,move position 671px 342px
 for_window [class="(?i)mpv"] focus
 #assign [class="(?i)mpv"] 4
 for_window [class="Google-chrome" title="Google Chrome"] layout tabbed
-for_window [class="Google-chrome" title="Google Chrome"] focus
+for_window [class="Google-chrome" title="Google Chrome"] focus 
+assign [class="Google-chrome" instance="www.youtube.com"] 4
+for_window [class="Google-chrome" instance="www.youtube.com"] focus
 assign [class="Google-chrome" title="Google Chrome"] 1
 
 assign [class="Code"] 2
@@ -311,7 +313,7 @@ bindsym $mod+Shift+q mode $close
 #bindsym $mod+Delete exec i3-persist toggle
 #exec i3-persist toggle
 
-bindsym $mod+minus scratchpad show
+#bindsym $mod+minus scratchpad show
 bindsym $mod+Shift+minus move scratchpad
 #for_window [class="Thunar"] resize set 300 300
 #for_window [class="Thunar"] floating enable resize set 1200px 650px, move position center
@@ -368,4 +370,5 @@ bindsym $mod+F5		exec --no-startup-id mpc toggle
 bindsym $mod+F6		exec --no-startup-id mpc next
 
 bindsym Print exec --no-startup-id cat ~/.scripts/screenshot.txt | jgmenu --simple --config-file=~/.config/jgmenu/jgmenurc
-bindsym $mod+y fullscreen disable; floating enable; resize set 607 344; move window to position 740 400 
+bindsym $mod+minus fullscreen disable; floating enable; resize set 607 344; move window to position 740 400 
+bindsym $mod+z exec --no-startup-id i3run -c Google-chrome -i www.youtube.com -g -e "google-chrome-stable --app=http://www.youtube.com"

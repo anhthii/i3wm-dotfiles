@@ -3,7 +3,7 @@
 YAD_WIDTH=200
 YAD_HEIGHT=200
 BOTTOM=true
-DATE="$(date +"%A %d,  %B%{O8}%%{F#00ffd4} %{F-}%{O8}%H:%M")"
+DATE="$(date +"%A %d,  %B%{O8}%%{F#00ffd4} %{F-}%{O8}%H:%M")"
 
 case "$1" in
     --popup)

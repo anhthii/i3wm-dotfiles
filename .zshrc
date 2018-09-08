@@ -35,9 +35,9 @@ alias play='~/.scripts/play --volume=100 --autofit=40% --geometry=-20-30'
  #Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-#ZSH_THEME="powerlevel9k/powerlevel9k"
-ZSH_THEME="igeek"
-#POWERLEVEL9K_MODE="nerdfont-complete"
+ZSH_THEME="powerlevel9k/powerlevel9k"
+#ZSH_THEME="igeek"
+POWERLEVEL9K_MODE="nerdfont-complete"
 
 #POWERLEVEL9K_DIR_HOME_SUBFOLDER_BACKGROUND="051" # Dark blue
 #POWERLEVEL9K_DIR_HOME_SUBFOLDER_FOREGROUND="232" # Dark blue
